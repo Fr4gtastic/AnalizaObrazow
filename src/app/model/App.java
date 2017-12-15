@@ -6,22 +6,37 @@ public class App
 {
     private Stage stage;
 
-    private Image image;
+    private Image originalImage;
 
-    public void setImage(Image image)
+    private Image processedImage;
+
+    public void setStage(Stage stage)
     {
-        this.image = image;
-    }
-
-    public Image getImage() {
-        return this.image;
-    }
-
-    public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    public Stage getStage() {
+    public Stage getStage()
+    {
         return this.stage;
+    }
+
+    public void setOriginalImage(Image originalImage)
+    {
+        this.originalImage = originalImage;
+    }
+
+    public Image getOriginalImage()
+    {
+        return this.originalImage;
+    }
+
+    public void setProcessedImage(Image processedImage)
+    {
+        this.processedImage = processedImage;
+    }
+
+    public Image getProcessedImage()
+    {
+        return processedImage;
     }
 }
