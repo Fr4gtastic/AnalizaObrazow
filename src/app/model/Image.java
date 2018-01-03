@@ -14,9 +14,12 @@ public class Image
 
     private BufferedImage image;
 
+    private ImageProcessor processor;
+
     public Image(Stage stage)
     {
         this.stage = stage;
+        this.processor = new ImageProcessor();
     }
 
     public void load()
@@ -26,7 +29,6 @@ public class Image
 
         try {
             this.image = ImageIO.read(file);
-            System.out.print(this.image.getWidth());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -35,8 +37,7 @@ public class Image
     public Image process()
     {
         Image processedImage = new Image(this);
-        //For testing
-        processedImage.image = processedImage.image.getSubimage(0, 0, 100, 100);
+        processedImage.image = this.processor.segmentate(processedImage.image, 3);
         return processedImage;
     }
 
