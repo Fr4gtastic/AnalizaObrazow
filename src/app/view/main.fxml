@@ -27,6 +27,7 @@
                 <Button mnemonicParsing="false" onMouseClicked="#processImageButtonClickAction" text="Process image" GridPane.rowIndex="1" />
                 <Button mnemonicParsing="false" onMouseClicked="#showOrigImageButtonClickAction" text="Show original image" GridPane.rowIndex="2" />
                 <Button mnemonicParsing="false" onMouseClicked="#showProcessedImageButtonClickAction" text="Show processed image" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onMouseClicked="#saveProcessedImageButtonClickAction" text="Save processed image" GridPane.rowIndex="4" />
             </GridPane>
          </center>
        </BorderPane>

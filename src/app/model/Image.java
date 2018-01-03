@@ -7,58 +7,74 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
-public class Image
-{
+public class Image {
     private Stage stage;
 
     private BufferedImage image;
 
     private ImageProcessor processor;
 
-    public Image(Stage stage)
-    {
-        this.stage = stage;
-        this.processor = new ImageProcessor();
+    public Image(Stage stage) {
+	this.stage = stage;
+	this.processor = new ImageProcessor();
     }
 
-    public void load()
-    {
-        FileChooser chooser = new FileChooser();
-        File file = chooser.showOpenDialog(this.stage);
+    public void load() {
+	FileChooser chooser = new FileChooser();
+	setChooserFilters(chooser);
+	File file = chooser.showOpenDialog(this.stage);
 
-        try {
-            this.image = ImageIO.read(file);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+	try {
+	    this.image = ImageIO.read(file);
+	} catch (Exception e) {
+	    System.out.println(e.getMessage());
+	}
     }
 
-    public Image process()
-    {
-        Image processedImage = new Image(this);
-        processedImage.image = this.processor.segmentate(processedImage.image, 3);
-        return processedImage;
+    public void save() {
+	FileChooser chooser = new FileChooser();
+	setChooserFilters(chooser);
+	File file = chooser.showSaveDialog(stage);
+
+	try {
+	    ImageIO.write(SwingFXUtils.fromFXImage(this.toFXImage(), null), "png", file);
+	} catch (IOException e) {
+	    System.out.println(e.getMessage());
+	}
     }
 
-    public BufferedImage toBufferedImage()
-    {
-        return this.image;
+    public Image process() {
+	Image processedImage = new Image(this);
+	processedImage.image = this.processor.segmentate(processedImage.image, 3);
+	return processedImage;
     }
 
-    public javafx.scene.image.Image toFXImage()
-    {
-        return SwingFXUtils.toFXImage(this.image, null);
+    public BufferedImage toBufferedImage() {
+	return this.image;
+    }
+
+    public javafx.scene.image.Image toFXImage() {
+	return SwingFXUtils.toFXImage(this.image, null);
     }
 
     /**
-     * Image copy constructor,
-     * is private cuz we want to use it only inside class definition
-     * @param other - other Image object
+     * Image copy constructor, is private cuz we want to use it only inside class
+     * definition
+     * 
+     * @param other
+     *            - other Image object
      */
-    private Image(Image other)
-    {
-        this.stage = other.stage;
-        this.image = other.image;
+    private Image(Image other) {
+	this.stage = other.stage;
+	this.image = other.image;
+    }
+
+    // this method is used to set extension filters for a file chooser
+
+    private static void setChooserFilters(FileChooser chooser) {
+	chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
+		new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
     }
 }
