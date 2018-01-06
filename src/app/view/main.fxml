@@ -24,10 +24,15 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" valignment="CENTER" />
               </rowConstraints>
                 <Button mnemonicParsing="false" onMouseClicked="#imageFileButtonClickAction" text="Load file" GridPane.rowIndex="0" />
-                <Button mnemonicParsing="false" onMouseClicked="#processImageButtonClickAction" text="Process image" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" onMouseClicked="#showOrigImageButtonClickAction" text="Show original image" GridPane.rowIndex="2" />
-                <Button mnemonicParsing="false" onMouseClicked="#showProcessedImageButtonClickAction" text="Show processed image" GridPane.rowIndex="3" />
-                <Button mnemonicParsing="false" onMouseClicked="#saveProcessedImageButtonClickAction" text="Save processed image" GridPane.rowIndex="4" />
+                <Spinner fx:id="spinner" GridPane.rowIndex="1">
+      				<valueFactory>
+        				<SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="100" initialValue="2"/>
+      				</valueFactory>
+    			</Spinner>
+                <Button mnemonicParsing="false" onMouseClicked="#processImageButtonClickAction" text="Process image" GridPane.rowIndex="2" />
+                <Button mnemonicParsing="false" onMouseClicked="#showOrigImageButtonClickAction" text="Show original image" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onMouseClicked="#showProcessedImageButtonClickAction" text="Show processed image" GridPane.rowIndex="4" />
+                <Button mnemonicParsing="false" onMouseClicked="#saveProcessedImageButtonClickAction" text="Save processed image" GridPane.rowIndex="5" />
             </GridPane>
          </center>
        </BorderPane>

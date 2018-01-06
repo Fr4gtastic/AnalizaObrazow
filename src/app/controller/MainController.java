@@ -3,6 +3,8 @@ package app.controller;
 import app.model.App;
 import app.model.Image;
 import javafx.fxml.FXML;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.ImageView;
 
 public class MainController {
@@ -10,6 +12,9 @@ public class MainController {
 
     @FXML
     private ImageView imageView;
+    
+    @FXML
+    private Spinner<Integer> spinner;
 
     @FXML
     public void imageFileButtonClickAction() {
@@ -22,7 +27,7 @@ public class MainController {
     @FXML
     public void processImageButtonClickAction() {
 	if (this.app.getOriginalImage() != null) {
-	    this.app.setProcessedImage(this.app.getOriginalImage().process());
+	    this.app.setProcessedImage(this.app.getOriginalImage().process(spinner.getValue()));
 	    this.imageView.setImage(this.app.getProcessedImage().toFXImage());
 	}
     }
