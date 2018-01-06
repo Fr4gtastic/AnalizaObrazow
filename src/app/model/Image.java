@@ -1,6 +1,9 @@
 package app.model;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -45,9 +48,9 @@ public class Image {
 	}
     }
 
-    public Image process() {
+    public Image process(int segmentsNumber) {
 	Image processedImage = new Image(this);
-	processedImage.image = this.processor.segmentate(processedImage.image, 3);
+	processedImage.image = this.processor.segmentate(processedImage.image, segmentsNumber);
 	return processedImage;
     }
 
